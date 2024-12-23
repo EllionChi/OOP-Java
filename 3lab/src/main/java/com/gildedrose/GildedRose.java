@@ -26,8 +26,7 @@ class GildedRose {
                 {
                     item.increase_quality_if_needed();
                 }
-
-
+                
             }
             else
             {
