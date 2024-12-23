@@ -42,13 +42,7 @@ class GildedRose {
                     break;
 
                 default:
-                    item.decrease_quality_if_needed();
-
-                    item.sellIn--;
-                    if (item.sellIn < 0)
-                    {
-                        item.decrease_quality_if_needed();
-                    }
+                    item.update_quality();
                     break;
 
             }
