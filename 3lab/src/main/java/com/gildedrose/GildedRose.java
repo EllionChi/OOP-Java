@@ -1,4 +1,3 @@
-
 class GildedRose {
     Item[] items;
 
@@ -9,31 +8,35 @@ class GildedRose {
     public void updateQuality() {
         for (Item item : items)
         {
-            if (item.name.equals("Aged Brie") || item.name.equals("Backstage passes to a TAFKAL80ETC concert"))
+            if (item.name.equals("Aged Brie"))
+            {
+                if (item.quality < 50)
+                {
+                    item.quality++;
+                }
+            }
+
+            else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert"))
             {
                 if (item.quality < 50)
                 {
                     item.quality++;
 
-                    if (item.name.equals("Backstage passes to a TAFKAL80ETC concert"))
+                    if (item.sellIn < 11)
                     {
-                        if (item.sellIn < 11)
-                        {
-                            item.increase_quality_if_needed();
-                        }
-
-                        if (item.sellIn < 6)
-                        {
-                            item.increase_quality_if_needed();
-                        }
+                        item.increase_quality_if_needed();
                     }
+
+                    if (item.sellIn < 6)
+                    {
+                        item.increase_quality_if_needed();
+                    }
+
                 }
-            } else
+            }
+            else
             {
-                if (item.quality > 0)
-                {
-                    item.decrease_quality_if_needed();
-                }
+                item.decrease_quality_if_needed();
             }
 
             if (!item.name.equals("Sulfuras, Hand of Ragnaros"))
@@ -46,19 +49,16 @@ class GildedRose {
                 if (item.name.equals("Aged Brie"))
                 {
                     item.increase_quality_if_needed();
-                } else
-                {
-                    if (item.name.equals("Backstage passes to a TAFKAL80ETC concert"))
-                    {
-                        item.quality = 0;
-                    } else
-                    {
-                        if (item.quality > 0)
-                        {
-                            item.decrease_quality_if_needed();
-                        }
-                    }
                 }
+                else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert"))
+                {
+                    item.quality = 0;
+                }
+                else
+                {
+                    item.decrease_quality_if_needed();
+                }
+
             }
         }
     }

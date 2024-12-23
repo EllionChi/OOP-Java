@@ -20,7 +20,7 @@ public class Item {
 
     public void decrease_quality_if_needed()
     {
-        if (!name.equals("Sulfuras, Hand of Ragnaros"))
+        if(quality > 0 && !name.equals("Sulfuras, Hand of Ragnaros"))
         {
             quality--;
         }
