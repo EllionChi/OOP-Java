@@ -8,51 +8,50 @@ class GildedRose {
     public void updateQuality() {
         for (Item item : items)
         {
-            if (item.name.equals("Aged Brie"))
+            switch (item.name)
             {
-                item.increase_quality_if_needed();
-            }
-
-            else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert"))
-            {
-                item.increase_quality_if_needed();
-
-                if (item.sellIn < 11)
-                {
+                case "Aged Brie":
                     item.increase_quality_if_needed();
-                }
 
-                if (item.sellIn < 6)
-                {
+                    item.sellIn--;
+                    if (item.sellIn < 0)
+                    {
+                        item.increase_quality_if_needed();
+                    }
+                    break;
+
+                case "Backstage passes to a TAFKAL80ETC concert":
                     item.increase_quality_if_needed();
-                }
-                
-            }
-            else
-            {
-                item.decrease_quality_if_needed();
-            }
+                    if (item.sellIn < 11)
+                    {
+                        item.increase_quality_if_needed();
+                    }
+                    if (item.sellIn < 6)
+                    {
+                        item.increase_quality_if_needed();
+                    }
 
-            if (!item.name.equals("Sulfuras, Hand of Ragnaros"))
-            {
-                item.sellIn--;
-            }
+                    item.sellIn--;
+                    if (item.sellIn < 0)
+                    {
+                        item.quality = 0;
+                    }
+                    break;
 
+                case "Sulfuras, Hand of Ragnaros":
+                    break;
 
-            if (item.name.equals("Aged Brie") && (item.sellIn < 0))
-            {
-                item.increase_quality_if_needed();
-            }
-            else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert") && (item.sellIn < 0))
-            {
-                item.quality = 0;
-            }
-            else if (item.sellIn < 0)
-            {
-                item.decrease_quality_if_needed();
-            }
+                default:
+                    item.decrease_quality_if_needed();
 
+                    item.sellIn--;
+                    if (item.sellIn < 0)
+                    {
+                        item.decrease_quality_if_needed();
+                    }
+                    break;
 
+            }
         }
     }
 
